@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace GameOfLife
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
             Console.ReadKey();
+        }
+
+        public static string HelloWorld()
+        {
+            return "Hello World!";
         }
     }
 }
