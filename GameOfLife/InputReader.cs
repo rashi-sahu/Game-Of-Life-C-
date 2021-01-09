@@ -1,0 +1,7 @@
+﻿
+namespace GameOfLife
+{
+    class InputReader
+    {
+    }
+}
