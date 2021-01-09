@@ -18,6 +18,8 @@ namespace GameOfLife
             while (counter > 0)
             {
                 Console.Clear();
+                PrintGrid printGrid = new PrintGrid();
+                printGrid.Print(nextGen);
 
                 counter--;
 
