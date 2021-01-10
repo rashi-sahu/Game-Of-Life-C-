@@ -12,7 +12,8 @@ namespace GameOfLife
             List<List<int>> nextGenerationGrid = inputReader.Read2DListFromFile();
             if (nextGenerationGrid.Count == 0)
             {
-                Environment.Exit(-1);
+                Console.Write("Input pattern is wrong. Please give the correct input");
+                Console.ReadKey();
             }
             int counter = 500000;
             while (counter > 0)
@@ -22,7 +23,8 @@ namespace GameOfLife
                 nextGenerationGrid = grid.NextGeneration();
                 if (nextGenerationGrid.Count == 0) 
                 {
-                    Environment.Exit(-1);
+                    Console.Write("Program Ended because next generation is an empty grid");
+                    Console.ReadKey();
                 }
                 new Grid(nextGenerationGrid).Print();
 
