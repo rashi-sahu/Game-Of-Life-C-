@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GameOfLife
 {
-     class Grid
+     public class Grid
      {
         private int row;
         private int column;
@@ -12,7 +12,7 @@ namespace GameOfLife
         public Grid(List<List<int>> grid)
         {
             this.row = grid.Count;
-            this.column = grid[0].Count;
+            this.column = grid.Count != 0 ? grid[0].Count : 0;
             this.grid = grid;
         }
 
@@ -42,7 +42,7 @@ namespace GameOfLife
         {
             this.grid = ExpandGrid();
             this.row = this.grid.Count;
-            this.column = this.grid[0].Count;
+            this.column = grid.Count != 0 ? grid[0].Count : 0;
             List<List<int>> gridCopy = GenerateDeepCopyOfGrid();
             this.grid = CalculateNextGenerationCells(gridCopy);
             List<List<int>> nextGenerationGrid = CompressGrid();
