@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace GameOfLife
@@ -8,7 +9,17 @@ namespace GameOfLife
         public List<List<int>> Read2DListFromFile()
         {
             string path = Path.Combine(Directory.GetCurrentDirectory(), "\\GameOfLife\\GameOfLife\\Input.txt");
-            string[] text = File.ReadAllLines(path);
+            string[] text = null;
+            try
+            {
+                text = File.ReadAllLines(path);
+            }
+            catch(Exception ex)
+            {
+                Console.Write(ex.Message);
+                Console.ReadKey();
+                Environment.Exit(-1);
+            }
             List<List<int>> grid = ConvertStringArrayTo2DIntegerList(text);
 
             return grid;

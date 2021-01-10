@@ -14,6 +14,7 @@ namespace GameOfLife
             {
                 Console.Write("Input pattern is wrong. Please give the correct input");
                 Console.ReadKey();
+                Environment.Exit(-1);
             }
             int counter = 500000;
             while (counter > 0)
@@ -25,6 +26,7 @@ namespace GameOfLife
                 {
                     Console.Write("Program Ended because next generation is an empty grid");
                     Console.ReadKey();
+                    Environment.Exit(-1);
                 }
                 new Grid(nextGenerationGrid).Print();
 
