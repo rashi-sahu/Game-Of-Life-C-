@@ -45,8 +45,9 @@ namespace GameOfLife
             this.column = this.grid[0].Count;
             List<List<int>> gridCopy = GenerateDeepCopyOfGrid();
             this.grid = CalculateNextGenerationCells(gridCopy);
+            List<List<int>> nextGenerationGrid = CompressGrid();
 
-            return this.grid;
+            return nextGenerationGrid;
         }
 
         private List<List<int>> ExpandGrid()
@@ -146,5 +147,119 @@ namespace GameOfLife
                 return false;
             }
         }
-    }
+
+        private List<List<int>> CompressGrid()
+        {
+            this.grid = DeleteFromTop();
+            this.grid = DeleteFromBottom();
+            this.grid = DeleteFromLeft();
+            this.grid = DeleteFromRight();
+            return this.grid;
+        }
+
+        private List<List<int>> DeleteFromTop()
+        {
+            List<List<int>> gridCopy = GenerateDeepCopyOfGrid();
+
+            for (int i = 0; i < this.grid.Count; i++)
+            {
+                for (int j = 0; j < this.grid[0].Count; j++)
+                {
+                    if (this.grid[i][j] == 1)
+                        return gridCopy;
+                }
+                gridCopy.RemoveAt(0);
+            }
+            return gridCopy;
+        }
+
+        private List<List<int>> DeleteFromBottom()
+        {
+            List<List<int>> gridCopy = GenerateDeepCopyOfGrid();
+
+            for (int i = this.grid.Count - 1; i >= 0; i--)
+            {
+                for (int j = this.grid[0].Count - 1; j >= 0; j--)
+                {
+                    if (this.grid[i][j] == 1)
+                        return gridCopy;
+                }
+                gridCopy.RemoveAt(gridCopy.Count - 1);
+            }
+            return gridCopy;
+        }
+
+        private List<List<int>> DeleteFromLeft()
+        {
+            List<List<int>> gridCopy = GenerateDeepCopyOfGrid();
+            if (grid.Count > 0)
+            {
+                int columnsToBeRemoved = FindColumnFromLeftToRemoveFromGrid();
+
+                for (int j = 0; j < columnsToBeRemoved; j++)
+                {
+                    for (int i = 0; i < this.grid.Count; i++)
+                    {
+                        gridCopy[i].RemoveAt(0);
+                    }
+                }
+                return gridCopy;
+            }
+            else
+            {
+                return new List<List<int>>();
+            }
+        }
+
+        private List<List<int>> DeleteFromRight()
+        {
+            List<List<int>> gridCopy = GenerateDeepCopyOfGrid();
+            if (grid.Count > 0)
+            {
+                int columnsToBeRemoved = FindColumnFromRightToRemoveFromGrid();
+                for (int j = this.grid[0].Count - 1; j > columnsToBeRemoved; j--)
+                {
+                    for (int i = this.grid.Count - 1; i >= 0; i--)
+                    {
+                        gridCopy[i].RemoveAt(gridCopy[0].Count - 1);
+                    }
+                }
+                return gridCopy;
+            }
+            else
+            {
+                return new List<List<int>>();
+            }
+        }
+
+        private int FindColumnFromLeftToRemoveFromGrid()
+        {
+            for (int j = 0; j < this.grid[0].Count; j++)
+            {
+                for (int i = 0; i < this.grid.Count; i++)
+                {
+                    if (this.grid[i][j] == 1)
+                    {
+                        return j;
+                    }
+                }
+            }
+            return this.grid[0].Count;
+        }
+
+        private int FindColumnFromRightToRemoveFromGrid()
+        {
+            for (int j = this.grid[0].Count - 1; j >= 0; j--)
+            {
+                for (int i = this.grid.Count - 1; i >= 0; i--)
+                {
+                    if (this.grid[i][j] == 1)
+                    {
+                        return j;
+                    }
+                }
+            }
+            return -1;
+        }
+     }
 }
