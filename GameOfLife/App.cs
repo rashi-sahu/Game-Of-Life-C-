@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GameOfLife
 {
-    public class Program
+    class App
     {
         static void Main(string[] args)
         {
