@@ -14,7 +14,7 @@ namespace GameOfLife
             {
                 Environment.Exit(-1);
             }
-            int counter = 5;
+            int counter = 500000;
             while (counter > 0)
             {
                 Console.Clear();
