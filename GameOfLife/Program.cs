@@ -9,17 +9,22 @@ namespace GameOfLife
         static void Main(string[] args)
         {
             InputReader inputReader = new InputReader();
-            List<List<int>> nextGen = inputReader.Read2DListFromFile();
-            if (nextGen.Count == 0)
+            List<List<int>> nextGenerationGrid = inputReader.Read2DListFromFile();
+            if (nextGenerationGrid.Count == 0)
             {
-                System.Environment.Exit(-1);
+                Environment.Exit(-1);
             }
             int counter = 5;
             while (counter > 0)
             {
                 Console.Clear();
-                PrintGrid printGrid = new PrintGrid();
-                printGrid.Print(nextGen);
+                Grid grid = new Grid(nextGenerationGrid);
+                nextGenerationGrid = grid.NextGeneration();
+                if (nextGenerationGrid.Count == 0) 
+                {
+                    Environment.Exit(-1);
+                }
+                new Grid(nextGenerationGrid).Print();
 
                 counter--;
 
