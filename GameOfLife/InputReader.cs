@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace GameOfLife
+﻿namespace GameOfLife
 {
-    class InputReader
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+
+    internal class InputReader
     {
         public List<List<int>> Read2DListFromFile()
         {
@@ -14,12 +14,13 @@ namespace GameOfLife
             {
                 text = File.ReadAllLines(path);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.Write(ex.Message);
                 Console.ReadKey();
                 Environment.Exit(-1);
             }
+
             List<List<int>> grid = ConvertStringArrayTo2DIntegerList(text);
 
             return grid;
@@ -44,6 +45,7 @@ namespace GameOfLife
                         return new List<List<int>>();
                     }
                 }
+
                 grid.Add(row);
             }
 

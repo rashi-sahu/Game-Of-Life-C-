@@ -1,12 +1,12 @@
-using System;
-using System.Threading;
-using System.Collections.Generic;
-
 namespace GameOfLife
 {
-    class App
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
+
+    public static class App
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             InputReader inputReader = new InputReader();
             List<List<int>> nextGenerationGrid = inputReader.Read2DListFromFile();
@@ -16,6 +16,7 @@ namespace GameOfLife
                 Console.ReadKey();
                 Environment.Exit(-1);
             }
+
             int counter = 500000;
             while (counter > 0)
             {
@@ -28,12 +29,14 @@ namespace GameOfLife
                     Console.ReadKey();
                     Environment.Exit(-1);
                 }
+
                 new Grid(nextGenerationGrid).Print();
 
                 counter--;
 
                 Thread.Sleep(1000);
             }
+
             Console.ReadKey();
         }
     }

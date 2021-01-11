@@ -1,9 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using GameOfLife;
-
-namespace GameOfLifeTests
+﻿namespace GameOfLifeTests
 {
+    using System.Collections.Generic;
+    using GameOfLife;
+    using Microsoft.VisualStudio.TestTools.UnitTesting; 
+
     [TestClass]
     public class GridTests
     {
@@ -17,8 +17,9 @@ namespace GameOfLifeTests
             inputGrid.Add(new List<int>() { 0, 0, 1, 0, 0 });
             inputGrid.Add(new List<int>() { 0, 0, 0, 0, 0 });
 
-            List<List<int>> expectedGrid = new List<List<int>>(){
-                new List<int>() {1, 1, 1}
+            List<List<int>> expectedGrid = new List<List<int>>()
+            {
+                new List<int>() { 1, 1, 1 }
             };
 
             Grid grid = new Grid(inputGrid);
@@ -48,7 +49,8 @@ namespace GameOfLifeTests
             inputGrid.Add(new List<int>() { 0, 1, 1, 0, 0 });
             inputGrid.Add(new List<int>() { 0, 1, 1, 0, 0 });
 
-            List<List<int>> expectedGrid = new List<List<int>>(){
+            List<List<int>> expectedGrid = new List<List<int>>()
+            {
                 new List<int>() { 0, 1, 1 },
                 new List<int>() { 0, 0, 1 },
                 new List<int>() { 1, 1, 0 }

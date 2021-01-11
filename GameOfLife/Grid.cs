@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace GameOfLife
+﻿namespace GameOfLife
 {
-     public class Grid
+    using System;
+    using System.Collections.Generic;
+
+    public class Grid
      {
         private int row;
         private int column;
@@ -25,10 +25,15 @@ namespace GameOfLife
                     foreach (int item in subList)
                     {
                         if (item == 0)
+                        {
                             Console.Write(".");
+                        }
                         else
+                        {
                             Console.Write("*");
+                        }
                     }
+
                     Console.WriteLine();
                 }
             }
@@ -57,12 +62,13 @@ namespace GameOfLife
                 List<List<int>> expandedGrid = new List<List<int>>();
                 for (int i = 0; i < grid.Count + 2; i++)
                 {
-                    List<int> row = new List<int>();
+                    List<int> expandedGridRows = new List<int>();
                     for (int j = 0; j < grid[0].Count + 2; j++)
                     {
-                        row.Add(0);
+                        expandedGridRows.Add(0);
                     }
-                    expandedGrid.Add(row);
+
+                    expandedGrid.Add(expandedGridRows);
                 }
 
                 for (int i = 1; i < expandedGrid.Count - 1; i++)
@@ -72,6 +78,7 @@ namespace GameOfLife
                         expandedGrid[i][j] = grid[i - 1][j - 1];
                     }
                 }
+
                 return expandedGrid;
             }
             else
@@ -87,6 +94,7 @@ namespace GameOfLife
             {
                 gridCopy.Add(new List<int>(this.grid[index]));
             }
+
             return gridCopy;
         }
 
@@ -98,16 +106,21 @@ namespace GameOfLife
                 {
                     int aliveNeighbours = CountAliveNeighbours(gridCopy, l, m);
                     if ((gridCopy[l][m] == 1) && (aliveNeighbours < 2))
+                    {
                         grid[l][m] = 0;
-
+                    }
                     else if ((gridCopy[l][m] == 1) && (aliveNeighbours > 3))
+                    {
                         grid[l][m] = 0;
-
+                    }
                     else if ((gridCopy[l][m] == 0) && (aliveNeighbours == 3))
+                    {
                         grid[l][m] = 1;
-
+                    }
                     else
+                    {
                         grid[l][m] = gridCopy[l][m];
+                    }
                 }
             }
 
@@ -130,6 +143,7 @@ namespace GameOfLife
                         }
                     }
                 }
+
                 aliveNeighbours -= gridCopy[x][y];
             }
 
@@ -166,10 +180,14 @@ namespace GameOfLife
                 for (int j = 0; j < this.grid[0].Count; j++)
                 {
                     if (this.grid[i][j] == 1)
+                    {
                         return gridCopy;
+                    }
                 }
+
                 gridCopy.RemoveAt(0);
             }
+
             return gridCopy;
         }
 
@@ -182,10 +200,14 @@ namespace GameOfLife
                 for (int j = this.grid[0].Count - 1; j >= 0; j--)
                 {
                     if (this.grid[i][j] == 1)
+                    {
                         return gridCopy;
+                    }
                 }
+
                 gridCopy.RemoveAt(gridCopy.Count - 1);
             }
+
             return gridCopy;
         }
 
@@ -203,6 +225,7 @@ namespace GameOfLife
                         gridCopy[i].RemoveAt(0);
                     }
                 }
+
                 return gridCopy;
             }
             else
@@ -224,6 +247,7 @@ namespace GameOfLife
                         gridCopy[i].RemoveAt(gridCopy[0].Count - 1);
                     }
                 }
+
                 return gridCopy;
             }
             else
@@ -244,6 +268,7 @@ namespace GameOfLife
                     }
                 }
             }
+
             return this.grid[0].Count;
         }
 
@@ -259,6 +284,7 @@ namespace GameOfLife
                     }
                 }
             }
+
             return -1;
         }
      }
